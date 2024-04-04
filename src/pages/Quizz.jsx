@@ -5,6 +5,8 @@ import Dropdown from '../components/Dropdown'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import Dropdownmodele from '../components/Dropdownmodele';
+import Dropdownversion from '../components/Dropdownversion';
 
 
 function Quizz() {
@@ -28,13 +30,13 @@ function Quizz() {
             <div className=' mt-9'>
               <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] py-3'>Modele</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdown />
+                <Dropdownmodele />
               </div>
             </div>
             <div className=' mt-9'>
               <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] py-3'>Version</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdown />
+                <Dropdownversion />
               </div>
             </div>
             <div className=' mt-[70px] flex justify-between px-16 '>

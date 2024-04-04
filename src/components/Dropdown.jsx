@@ -70,7 +70,7 @@ const Dropdown = () => {
       <div className="relative">
         <input
           type="text"
-          placeholder="Marque"
+          placeholder="Choisir votre marque"
           ref={inputRef}
           className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[500px] border-[1px] rounded-lg p-2 focus:outline-none`}
           onClick={toggleDropdown}
