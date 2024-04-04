@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn'
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Quizz from './pages/Quizz';
+import QuizzType from './pages/QuizzType';
 
 
 
@@ -22,6 +23,7 @@ function App() {
               <Route path='/about' exact Component={AboutUs} />
               <Route path='/contact' exact Component={Contact} />
               <Route path='/quizz' exact Component={Quizz} />
+              <Route path='/quizztype' exact Component={QuizzType} />
             </Routes>
         </Router>
     </div>
