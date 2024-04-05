@@ -25,7 +25,6 @@ function QuizzType() {
                 <div class=" mx-auto w-[80%] my-5 ">
                     <div class="w-full h-px bg-[#bebebe]"></div>
                 </div>
-
                 {/*type */}
                 <div className=' w-[70%]  mx-auto  mt-[40px] mb-[70px]    grid md:grid-cols-3 gap-8' >
                     <div>
@@ -33,12 +32,11 @@ function QuizzType() {
 
                     <div 
                         onClick={()=> handleClick('basic')} className={`flex justify-center items-center   border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'basic' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''}`}
-                    >
-                        
+                    >                
                         <Lottie className='h-[200px]  md:h-[300px]'
                             animationData={basic}
                             loop
-                            autoplay
+                            autoplay                           
                         />
                     </div>
                     </div>
@@ -55,8 +53,7 @@ function QuizzType() {
                             autoplay
                         />
                     </div>
-                    </div>
-                    
+                    </div>                    
                     <div>
                     <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'advanced' ? 'text-[#F7C213]' : '' }`} >Advanced</h1>
                     <div onClick={()=> handleClick('advanced')}
@@ -69,8 +66,7 @@ function QuizzType() {
                             autoplay
                         />
                     </div>
-                    </div>
-                   
+                    </div>                   
                 </div>
 
                 <div className=' mt-[70px] flex justify-between px-16 '>

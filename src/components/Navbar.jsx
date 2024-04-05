@@ -36,7 +36,7 @@ function Navbar() {
             {nav ? <AiOutlineClose color='#2E2E2E' size={27} /> : <AiOutlineMenu size={27} color='#2E2E2E'/> }    
         </div >
         
-        <div className={nav ? ' fixed left-0 top-0 w-[60%] border-r h-full bg-white ease-in-out duration-500' : '  ease-in-out duration-500 fixed left-[-100%]'}>
+        <div className={nav ? ' fixed left-0 top-0 w-[60%] border-r h-full bg-white ease-in-out duration-500' : '  ease-in-out duration-500 fixed left-[-100%]'} style={{zIndex:'2'}}>
             
             <img className='flex mx-auto  my-4 cursor-pointer  bg-[white] hover:rotate-12  duration-300'  src={logo1} alt="Logo image" style={{height:'80px',width:'90px'}}  /> 
 

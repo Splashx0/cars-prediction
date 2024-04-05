@@ -71,14 +71,14 @@ function Dropdownversion() {
                     type="text"
                     placeholder="Choisir votre version"
                     ref={inputRef}
-                    className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[500px] border-[1px] rounded-lg p-2 focus:outline-none`}
+                    className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[400px] sm:w-[500px] border-[1px] rounded-lg p-2 focus:outline-none`}
                     onClick={toggleDropdown}
                     onFocus={handleInputFocus}
                     onBlur={handleInputBlur}
                     value={searchText}
                     onChange={handleSearchChange}
                 />
-                <div className="absolute inset-y-0 left-[470px] flex items-center">
+                <div className="absolute inset-y-0 left-[370px] sm:left-[470px] flex items-center">
                     <IoMdArrowDropdown className='cursor-pointer' color={isFocused ? '#F7C213' : '#2E2E2E'} />
                 </div>
             </div>
