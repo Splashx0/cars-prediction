@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Quizz from './pages/Quizz';
 import QuizzType from './pages/QuizzType';
 import Quizzquest from './pages/Quizzquest';
+import quizzquest2 from './pages/quizzquest2';
 
 
 
@@ -26,6 +27,7 @@ function App() {
               <Route path='/quizz' exact Component={Quizz} />
               <Route path='/quizztype' exact Component={QuizzType} />
               <Route path='/quizzquest' exact Component={Quizzquest} />
+              <Route path='/quizzquest2' exact Component={quizzquest2} />
             </Routes>
         </Router>
     </div>

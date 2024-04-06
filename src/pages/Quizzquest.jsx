@@ -16,7 +16,7 @@ const questions = [
     },
     {
         title: 'Extérieur du véhicule',
-        options: ['Excellent', 'Bon', 'Moyen', 'Mauvais']
+        options: ['Excellent', 'Bon']
     },
     {
         title: 'Extérieur du véhicule',
@@ -50,7 +50,7 @@ function Quizzquest() {
                         <div key={questionIndex} className=" mb-4">
                             <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>{question.title}</h1>
                             <div className=' flex justify-center mt-[26px] mb-[20px]'>
-                                <div className=' grid sm:grid-cols-2 md:grid-cols-4 gap-8  mx-auto w-[60%] sm:w-[75%] '>
+                                <div className={` grid sm:grid-cols-2 md:grid-cols-${question.options.length} gap-8  mx-auto w-[60%] sm:w-[75%]`} >
                                     {question.options.map((option, index) => (
                                         <div key={index}>
                                             <Quizzelement

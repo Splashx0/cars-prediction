@@ -72,7 +72,7 @@ const Dropdown = () => {
           type="text"
           placeholder="Choisir votre marque"
           ref={inputRef}
-          className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[400px] sm:w-[500px] border-[1px] rounded-lg p-2 focus:outline-none`}
+          className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[400px] sm:w-[500px] border-[1px] h-[57px] rounded-[20px] p-2 focus:outline-none`}
           onClick={toggleDropdown}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
