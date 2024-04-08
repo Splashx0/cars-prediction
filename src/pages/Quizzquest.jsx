@@ -2,35 +2,164 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Quizzelement from '../components/Quizzelement';
+import QuizzInput from '../components/QuizzInput';
+import DateInput from '../components/DateInput';
+import Dropdown from '../components/Dropdown'
+
 
 const questions = [
     {
-        title: 'Intérieur du véhicule',
-        options: ['Alfa Romeo', 'Audi', 'BMW', 'Chevrolet']
+        type: "dropdown",
+        title : "État général de la voiture",
+        options : ["Excellent (Comme neuf)","Bon (quelques usures mineures)","Moyen (usures modérée","Mediocre (nécessite des réparations)"]  
+    },
+    {   
+        type: "option",
+        title : "Carburant",
+        options : ["Essence","Diesel"] 
     },
     {
-        title: 'Extérieur du véhicule',
-        options: ['Excellent', 'Bon', 'Moyen', 'Mauvais']
+        type: "dropdown",
+        title : "Nombre de propriétaires",
+        options : ["Premiére main","Deuxiéme main","Troisiéeme main","Autre"]  
     },
     {
+        type: "option",
+        title: 'Historique d\'entretien',
+        options: ['Entretien régulier maison', 'Entretien régulier', 'Entretien irrégulier', 'Aucun entretien']
+    },
+    {
+        type: "option",
+        title : "Boite Vitesse",
+        options : ["Manuelle","Automatique"]
+        
+    },
+    {
+        type: "date",
+        title: 'Date de mise en circulation',
+    },
+    {   
+        type: "input",
+        title: 'Nombre de Km parcouru',
+    },
+    {
+        type: "date",
+        title : "Année de fabrication", 
+    },
+    {
+        type: "option",
         title: 'Extérieur du véhicule',
         options: ['Excellent', 'Bon']
     },
-    {
-        title: 'Extérieur du véhicule',
-        options: ['Excellent', 'Bon', 'Moyen', 'Mauvais']
-    }
+    {   
+        type: "option",
+        title : "Carburant",
+        options : ["Essence","Diesel"] 
+    },
+   
+    
+    
+    
+   
 ];
 
 function Quizzquest() {
+    const [answers, setAnswers] = useState(Array(questions.length).fill(null));
     const [activeOptions, setActiveOptions] = useState(Array(questions.length).fill(null));
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 4;
+    const navigate = useNavigate();
 
     const handleOptionClick = (index, questionIndex) => {
         const newActiveOptions = [...activeOptions];
         newActiveOptions[questionIndex] = index;
         setActiveOptions(newActiveOptions);
+        const newAnswers = [...answers];
+        newAnswers[questionIndex] = questions[questionIndex].options[index];
+        setAnswers(newAnswers);
+        console.log(newAnswers);
+    };
+    const handleInputChange = (value, questionIndex) => {
+        const newAnswers = [...answers];
+        newAnswers[questionIndex] = value;
+        setAnswers(newAnswers);
+        console.log(newAnswers);
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => {
+            // Check if there are more questions
+            if ((prevPage + 1) * itemsPerPage < questions.length) {
+                setActiveOptions(Array(questions.length).fill(null));
+                return prevPage + 1;
+            } else {
+                // If no more questions, navigate to "/quizz"
+                navigate('/price'); 
+                return prevPage;
+            }
+        });
+    };
+
+    const handlePreviousPage = () => {
+        setCurrentPage((prevPage) => {
+            if (prevPage > 0) {
+                return prevPage - 1;
+            } else {
+                // If on the first page, navigate to "/quizzquest2"
+                navigate('/quizz');
+                return prevPage;
+            }
+        });
+    };
+
+    const renderQuestion = (question, questionIndex) => {
+        switch (question.type) {
+            case "option":
+                return (
+                    <div key={questionIndex} className="mb-4">
+                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
+                        <div className={`grid sm:grid-cols-2 md:grid-cols-${question.options.length} gap-8 mx-auto w-[60%] sm:w-[75%]`} >
+                            {question.options.map((option, index) => (
+                                <div key={index}>
+                                    <Quizzelement
+                                        index={index}
+                                        active={activeOptions[questionIndex] === index}
+                                        handleOptionClick={() => handleOptionClick(index, questionIndex)}
+                                        text={option}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            case "date":
+                return (
+                    <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
+                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
+                        <DateInput text={question.title} onChange={(value) => handleInputChange(value, questionIndex)} />
+                    </div>
+                );
+            case "input":
+                return (
+                    <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
+                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
+                        <QuizzInput text={question.title} onChange={(value) => handleInputChange(value,questionIndex)} />
+                    </div>
+                );
+            case "dropdown":
+                return(
+                    <div key={questionIndex}>
+                    <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
+                    <div className=' flex justify-center  w-[60%]  mx-auto'>
+                      <Dropdown placehold={question.title} options={question.options}/>
+                    </div>
+                    </div>
+                );
+            default:
+                return null;
+        }
     };
 
     return (
@@ -46,39 +175,19 @@ function Quizzquest() {
                 </div>
                 {/*content */}
                 <div className='sm:overflow-y-auto sm:max-h-[425px] scrollbar'>
-                    {questions.map((question, questionIndex) => (
-                        <div key={questionIndex} className=" mb-4">
-                            <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>{question.title}</h1>
-                            <div className=' flex justify-center mt-[26px] mb-[20px]'>
-                                <div className={` grid sm:grid-cols-2 md:grid-cols-${question.options.length} gap-8  mx-auto w-[60%] sm:w-[75%]`} >
-                                    {question.options.map((option, index) => (
-                                        <div key={index}>
-                                            <Quizzelement
-                                                index={index}
-                                                active={activeOptions[questionIndex] === index}
-                                                handleOptionClick={() => handleOptionClick(index, questionIndex)}
-                                                text={option}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                    {questions.slice(currentPage * itemsPerPage, currentPage * itemsPerPage + itemsPerPage).map((question, questionIndex) => (
+                        renderQuestion(question, questionIndex)
                     ))}
                 </div>
-                {/*separator */}
-                <div class=" mx-auto w-[80%]   ">
-                    <div class="w-full h-0 sm:h-px bg-[#bebebe]"></div>
+                <div className="mx-auto w-[80%]">
+                    <div className="w-full h-0 sm:h-px bg-[#bebebe]"></div>
                 </div>
-                 {/*buttons next/prev */}                           
-                <div className= ' pb-6 sm:mt-[30px] mt-[50px] flex justify-between px-16 '>
-                    <Link to='/quizz'>
-                        <button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' >
-                            <span className='  group-hover:-translate-x-1.5 duration-200'><FaArrowLeftLong className='mt-1 mr-[6px]' /></span> Precedent
-                        </button>
-                    </Link>
-                    <button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' >
-                        Suivant<span className='  group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span>
+                <div className='pb-6 sm:mt-[30px] mt-[50px] flex justify-between px-16'>
+                    <button onClick={handlePreviousPage} className='w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300 font-semibold ' >
+                        <span className='group-hover:-translate-x-1.5 duration-200'><FaArrowLeftLong className='mt-1 mr-[6px]' /></span> Precedent
+                    </button>
+                    <button onClick={handleNextPage} className='w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300 font-semibold ' >
+                        Suivant<span className='group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span>
                     </button>
                 </div>
             </div>

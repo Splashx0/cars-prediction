@@ -5,11 +5,11 @@ import Dropdown from '../components/Dropdown'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import Dropdownmodele from '../components/Dropdownmodele';
-import Dropdownversion from '../components/Dropdownversion';
+
 
 
 function Quizz() {
+  const options = ['ALFA ROMEO', 'AUDI', 'BMW', 'CHEVROLET'];
 
   return (
     <div>
@@ -25,24 +25,24 @@ function Quizz() {
             <div>
               <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Marque</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdown />
+                <Dropdown placehold="Marque" options={options}/>
               </div>
             </div>
             <div >
               <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Modele</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdownmodele />
+                <Dropdown placehold="Modele" options={options} />
               </div>
             </div>
             <div >
               <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Version</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdownversion />
+                <Dropdown placehold="Version" options={options} />
               </div>
             </div>
             <div className=' mt-[70px] flex justify-between px-16 '>
              <Link to='/quizztype'><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' ><span className='  group-hover:-translate-x-1.5 duration-200'><FaArrowLeftLong className='mt-1 mr-[6px]' /></span> Precedent</button></Link>
-             <Link to='/quizzquest2'><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' > Suivant<span className='  group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span></button></Link> 
+             <Link to='/quizzquest'><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' > Suivant<span className='  group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span></button></Link> 
             </div>
         </div>
         <Footer/>
