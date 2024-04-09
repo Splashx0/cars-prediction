@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const Dropdown = () => {
+const Dropdown = ({ placehold, options,question }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
@@ -9,7 +9,9 @@ const Dropdown = () => {
   const [dropdownTop, setDropdownTop] = useState(null);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
-  const options = ['ALFA ROMEO', 'AUDI', 'BMW', 'CHEVROLET'];
+  
+
+  const [answer,setAnswer]=useState({})
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -31,6 +33,7 @@ const Dropdown = () => {
     setSelectedOption(option);
     setSearchText(option);
     setIsOpen(false);
+    
   };
 
   useEffect(() => {
@@ -39,6 +42,8 @@ const Dropdown = () => {
         setIsOpen(false);
       }
     };
+  
+
 
     window.addEventListener('click', handleWindowClick);
 
@@ -46,6 +51,12 @@ const Dropdown = () => {
       window.removeEventListener('click', handleWindowClick);
     };
   }, []);
+
+  useEffect(()=>{
+    setAnswer({[question] :selectedOption})
+    
+  },[selectedOption])
+  console.log(answer);
 
   useEffect(() => {
     if (isOpen && inputRef.current && dropdownRef.current) {
@@ -61,25 +72,25 @@ const Dropdown = () => {
     }
   }, [isOpen]);
 
-  const filteredOptions = options.filter(option =>
+  const filteredOptions = options ? options.filter(option =>
     option.toLowerCase().includes(searchText.toLowerCase())
-  );
+  ) : [];
 
   return (
     <div className="relative">
       <div className="relative">
         <input
           type="text"
-          placeholder="Choisir votre marque"
+          placeholder={placehold}
           ref={inputRef}
-          className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[400px] sm:w-[500px] border-[1px] rounded-lg p-2 focus:outline-none`}
+          className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[300px] sm:w-[500px] lg:w-[600px] border-[1px] h-[57px] rounded-[20px] p-2 focus:outline-none`}
           onClick={toggleDropdown}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           value={searchText}
           onChange={handleSearchChange}
         />
-        <div className="absolute inset-y-0 left-[370px] sm:left-[470px] flex items-center">
+        <div className="absolute inset-y-0 left-[270px] sm:left-[470px] lg:left-[570px] flex items-center">
           <IoMdArrowDropdown className='cursor-pointer' color={isFocused ? '#F7C213' : '#2E2E2E'} />
         </div>
       </div>

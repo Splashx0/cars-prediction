@@ -5,11 +5,11 @@ import Dropdown from '../components/Dropdown'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import Dropdownmodele from '../components/Dropdownmodele';
-import Dropdownversion from '../components/Dropdownversion';
+
 
 
 function Quizz() {
+  const options = ['ALFA ROMEO', 'AUDI', 'BMW', 'CHEVROLET'];
 
   return (
     <div>
@@ -18,25 +18,26 @@ function Quizz() {
             <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>Identification</h1>
             <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Identifiez précisément le véhicule que vous souhaitez estimer</p>
             {/*separator */}
-            <div class=" mx-auto w-[80%] my-5 ">
+            <div class=" mx-auto w-[80%] mt-5 ">
                 <div class="w-full h-px bg-[#bebebe]"></div>
             </div>
+            {/**content */}
             <div>
-              <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] py-3'>Marque</h1>
+              <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Marque</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdown />
+                <Dropdown placehold="Marque" options={options}/>
               </div>
             </div>
-            <div className=' mt-9'>
-              <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] py-3'>Modele</h1>
+            <div >
+              <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Modele</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdownmodele />
+                <Dropdown placehold="Modele" options={options} />
               </div>
             </div>
-            <div className=' mt-9'>
-              <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] py-3'>Version</h1>
+            <div >
+              <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Version</h1>
               <div className=' flex justify-center  w-[60%]  mx-auto'>
-                <Dropdownversion />
+                <Dropdown placehold="Version" options={options} />
               </div>
             </div>
             <div className=' mt-[70px] flex justify-between px-16 '>

@@ -1,0 +1,37 @@
+{
+    "questions" :[
+        {
+            "type": "dropdown",
+            "title" : "Marque",
+            "step" : 1
+        },
+        {
+            "type": "dropdown",
+            "title" : "Modele",
+            "step" : 1
+        },
+        {
+            "type": "dropdown",
+            "title" : "Version",
+            "step" : 1
+        },
+        {
+            "type": "option",
+            "title" : "Carburant",
+            "options" : ["Essence","Diesel"],
+            "step" : 2
+        },
+        {
+            "type": "option",
+            "title" : "Boite Vitesse",
+            "options" : ["Manuelle","Automatique"],
+            "step" : 2
+        },
+        {
+            "type": "date",
+            "title" : "Date de mise en circulation",
+            "options" : ["Essence","Diesel"],
+            "step" : 2
+        }
+    ]
+}
