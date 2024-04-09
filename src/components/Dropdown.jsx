@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const Dropdown = ({ placehold, options }) => {
+const Dropdown = ({ placehold, options,question }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
@@ -9,7 +9,9 @@ const Dropdown = ({ placehold, options }) => {
   const [dropdownTop, setDropdownTop] = useState(null);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+  
 
+  const [answer,setAnswer]=useState({})
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -31,6 +33,7 @@ const Dropdown = ({ placehold, options }) => {
     setSelectedOption(option);
     setSearchText(option);
     setIsOpen(false);
+    
   };
 
   useEffect(() => {
@@ -39,6 +42,8 @@ const Dropdown = ({ placehold, options }) => {
         setIsOpen(false);
       }
     };
+  
+
 
     window.addEventListener('click', handleWindowClick);
 
@@ -46,6 +51,12 @@ const Dropdown = ({ placehold, options }) => {
       window.removeEventListener('click', handleWindowClick);
     };
   }, []);
+
+  useEffect(()=>{
+    setAnswer({[question] :selectedOption})
+    
+  },[selectedOption])
+  console.log(answer);
 
   useEffect(() => {
     if (isOpen && inputRef.current && dropdownRef.current) {

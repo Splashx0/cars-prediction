@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Quizzelement from '../components/Quizzelement';
 import QuizzInput from '../components/QuizzInput';
 import DateInput from '../components/DateInput';
-import Dropdown from '../components/Dropdown'
-
+import Dropdown from '../components/Dropdown';
 
 const questions = [
     {
@@ -58,15 +57,10 @@ const questions = [
         title : "Carburant",
         options : ["Essence","Diesel"] 
     },
-   
-    
-    
-    
-   
 ];
 
 function Quizzquest() {
-    const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+    const [answer,setAnswer]=useState({})
     const [activeOptions, setActiveOptions] = useState(Array(questions.length).fill(null));
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 4;
@@ -76,17 +70,12 @@ function Quizzquest() {
         const newActiveOptions = [...activeOptions];
         newActiveOptions[questionIndex] = index;
         setActiveOptions(newActiveOptions);
-        const newAnswers = [...answers];
-        newAnswers[questionIndex] = questions[questionIndex].options[index];
-        setAnswers(newAnswers);
-        console.log(newAnswers);
-    };
-    const handleInputChange = (value, questionIndex) => {
-        const newAnswers = [...answers];
-        newAnswers[questionIndex] = value;
-        setAnswers(newAnswers);
-        console.log(newAnswers);
-    };
+        
+      };
+
+      
+    
+      
 
     const handleNextPage = () => {
         setCurrentPage((prevPage) => {
@@ -138,14 +127,14 @@ function Quizzquest() {
                 return (
                     <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
                         <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <DateInput text={question.title} onChange={(value) => handleInputChange(value, questionIndex)} />
+                        <DateInput question={question.title}    />
                     </div>
                 );
             case "input":
                 return (
                     <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
                         <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <QuizzInput text={question.title} onChange={(value) => handleInputChange(value,questionIndex)} />
+                        <QuizzInput question={question.title}   />
                     </div>
                 );
             case "dropdown":
@@ -153,7 +142,7 @@ function Quizzquest() {
                     <div key={questionIndex}>
                     <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
                     <div className=' flex justify-center  w-[60%]  mx-auto'>
-                      <Dropdown placehold={question.title} options={question.options}/>
+                      <Dropdown placehold={question.title} options={question.options} question={question.title}  />
                     </div>
                     </div>
                 );
