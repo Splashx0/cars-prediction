@@ -1,17 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
+import { MyContext } from '../Context';
 
-const Dropdown = ({ placehold, options,question }) => {
+const Dropdown = ({ placehold, options, question }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
+  const [, setSelectedOption] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [dropdownTop, setDropdownTop] = useState(null);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
-  
-
-  const [answer,setAnswer]=useState({})
+  const { dropdownAnswers, setDrpodownAnswers } = useContext(MyContext);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -32,31 +31,26 @@ const Dropdown = ({ placehold, options,question }) => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setSearchText(option);
-    setIsOpen(false);
-    
-  };
 
+    let CopyDrpodownAnswers = { ...dropdownAnswers }
+    CopyDrpodownAnswers[question] = option
+    setDrpodownAnswers(CopyDrpodownAnswers)
+
+    setIsOpen(false);
+
+  };
   useEffect(() => {
     const handleWindowClick = (e) => {
       if (!dropdownRef.current?.contains(e.target) && !inputRef.current?.contains(e.target)) {
         setIsOpen(false);
       }
     };
-  
-
-
     window.addEventListener('click', handleWindowClick);
-
     return () => {
       window.removeEventListener('click', handleWindowClick);
     };
   }, []);
 
-  useEffect(()=>{
-    setAnswer({[question] :selectedOption})
-    
-  },[selectedOption])
-  console.log(answer);
 
   useEffect(() => {
     if (isOpen && inputRef.current && dropdownRef.current) {

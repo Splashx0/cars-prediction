@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -7,75 +7,27 @@ import Quizzelement from '../components/Quizzelement';
 import QuizzInput from '../components/QuizzInput';
 import DateInput from '../components/DateInput';
 import Dropdown from '../components/Dropdown';
-
-const questions = [
-    {
-        type: "dropdown",
-        title : "État général de la voiture",
-        options : ["Excellent (Comme neuf)","Bon (quelques usures mineures)","Moyen (usures modérée","Mediocre (nécessite des réparations)"]  
-    },
-    {   
-        type: "option",
-        title : "Carburant",
-        options : ["Essence","Diesel"] 
-    },
-    {
-        type: "dropdown",
-        title : "Nombre de propriétaires",
-        options : ["Premiére main","Deuxiéme main","Troisiéeme main","Autre"]  
-    },
-    {
-        type: "option",
-        title: 'Historique d\'entretien',
-        options: ['Entretien régulier maison', 'Entretien régulier', 'Entretien irrégulier', 'Aucun entretien']
-    },
-    {
-        type: "option",
-        title : "Boite Vitesse",
-        options : ["Manuelle","Automatique"]
-        
-    },
-    {
-        type: "date",
-        title: 'Date de mise en circulation',
-    },
-    {   
-        type: "input",
-        title: 'Nombre de Km parcouru',
-    },
-    {
-        type: "date",
-        title : "Année de fabrication", 
-    },
-    {
-        type: "option",
-        title: 'Extérieur du véhicule',
-        options: ['Excellent', 'Bon']
-    },
-    {   
-        type: "option",
-        title : "Carburant",
-        options : ["Essence","Diesel"] 
-    },
-];
+import { questions } from '../assets/Questions';
+import { MyContext } from '../Context';
 
 function Quizzquest() {
-    const [answer,setAnswer]=useState({})
-    const [activeOptions, setActiveOptions] = useState(Array(questions.length).fill(null));
+    const [activeOptions, setActiveOptions] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 4;
     const navigate = useNavigate();
+    const { optionAnswers, setOptionAnswers } = useContext(MyContext);
 
-    const handleOptionClick = (index, questionIndex) => {
-        const newActiveOptions = [...activeOptions];
+
+    const handleOptionClick = (index, questionIndex, question, option) => {
+        let newActiveOptions = [...activeOptions];
         newActiveOptions[questionIndex] = index;
         setActiveOptions(newActiveOptions);
-        
-      };
 
-      
-    
-      
+        let optionsCopy = { ...optionAnswers }
+        optionsCopy[question] = option
+        setOptionAnswers(optionsCopy)
+
+    };
 
     const handleNextPage = () => {
         setCurrentPage((prevPage) => {
@@ -85,7 +37,7 @@ function Quizzquest() {
                 return prevPage + 1;
             } else {
                 // If no more questions, navigate to "/quizz"
-                navigate('/price'); 
+                navigate('/price');
                 return prevPage;
             }
         });
@@ -115,7 +67,7 @@ function Quizzquest() {
                                     <Quizzelement
                                         index={index}
                                         active={activeOptions[questionIndex] === index}
-                                        handleOptionClick={() => handleOptionClick(index, questionIndex)}
+                                        handleOptionClick={() => handleOptionClick(index, questionIndex, question.title, option)}
                                         text={option}
                                     />
                                 </div>
@@ -127,23 +79,23 @@ function Quizzquest() {
                 return (
                     <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
                         <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <DateInput question={question.title}    />
+                        <DateInput question={question.title} />
                     </div>
                 );
             case "input":
                 return (
                     <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
                         <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <QuizzInput question={question.title}   />
+                        <QuizzInput question={question.title} />
                     </div>
                 );
             case "dropdown":
-                return(
+                return (
                     <div key={questionIndex}>
-                    <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                    <div className=' flex justify-center  w-[60%]  mx-auto'>
-                      <Dropdown placehold={question.title} options={question.options} question={question.title}  />
-                    </div>
+                        <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
+                        <div className=' flex justify-center  w-[60%]  mx-auto'>
+                            <Dropdown placehold={question.title} options={question.options} question={question.title} />
+                        </div>
                     </div>
                 );
             default:
@@ -159,8 +111,8 @@ function Quizzquest() {
                 <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>État du véhicule</h1>
                 <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Indiquez l'état du véhicule</p>
                 {/*separator */}
-                <div class=" mx-auto w-[80%] mt-5 ">
-                    <div class="w-full h-px bg-[#bebebe]"></div>
+                <div className=" mx-auto w-[80%] mt-5 ">
+                    <div className="w-full h-px bg-[#bebebe]"></div>
                 </div>
                 {/*content */}
                 <div className='sm:overflow-y-auto sm:max-h-[425px] scrollbar'>

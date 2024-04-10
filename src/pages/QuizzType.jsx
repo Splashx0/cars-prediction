@@ -22,51 +22,51 @@ function QuizzType() {
                 <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>De quel type de questionnaire avez-vous besoin ?</h1>
                 <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Pour commencer, choisissez l'un des quiz suivants</p>
                 {/*separator */}
-                <div class=" mx-auto w-[80%] my-5 ">
-                    <div class="w-full h-px bg-[#bebebe]"></div>
+                <div className=" mx-auto w-[80%] my-5 ">
+                    <div className="w-full h-px bg-[#bebebe]"></div>
                 </div>
                 {/*type */}
                 <div className=' w-[70%]  mx-auto  mt-[40px] mb-[70px]    grid md:grid-cols-3 gap-8' >
                     <div>
-                    <h1 className={`mb-3 text-xl text-center font-semibold text-[#2E2E2E] ${activeAnimation === 'basic' ? 'text-[#F7C213]' : ''}`}>Basic</h1>
+                        <h1 className={`mb-3 text-xl text-center font-semibold text-[#2E2E2E] ${activeAnimation === 'basic' ? 'text-[#F7C213]' : ''}`}>Basic</h1>
 
-                    <div 
-                        onClick={()=> handleClick('basic')} className={`flex justify-center items-center   border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'basic' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''}`}
-                    >                
-                        <Lottie className='h-[200px]  md:h-[300px]'
-                            animationData={basic}
-                            loop
-                            autoplay                           
-                        />
-                    </div>
+                        <div
+                            onClick={() => handleClick('basic')} className={`flex justify-center items-center   border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'basic' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''}`}
+                        >
+                            <Lottie className='h-[200px]  md:h-[300px]'
+                                animationData={basic}
+                                loop
+                                autoplay
+                            />
+                        </div>
                     </div>
                     <div>
-                    <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'medium' ? 'text-[#F7C213]' : '' }`}
-                    >Medium</h1>
-                    <div onClick={()=> handleClick('medium')}
-                    className={`flex justify-center items-center  border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'medium' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''} `}
-                     >
-                        <Lottie
-                            className='h-[200px] md:h-[300px] '
-                            animationData={medium}
-                            loop
-                            autoplay
-                        />
+                        <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'medium' ? 'text-[#F7C213]' : ''}`}
+                        >Medium</h1>
+                        <div onClick={() => handleClick('medium')}
+                            className={`flex justify-center items-center  border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'medium' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''} `}
+                        >
+                            <Lottie
+                                className='h-[200px] md:h-[300px] '
+                                animationData={medium}
+                                loop
+                                autoplay
+                            />
+                        </div>
                     </div>
-                    </div>                    
                     <div>
-                    <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'advanced' ? 'text-[#F7C213]' : '' }`} >Advanced</h1>
-                    <div onClick={()=> handleClick('advanced')}
-                    className={`flex justify-center items-center border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation ==='advanced' ? 'bg-[#ffd54d33] border-[#F7C213]' : '' }`}
-                     >
-                        <Lottie
-                            className='h-[200px] md:h-[300px]'
-                            animationData={advanced}
-                            loop
-                            autoplay
-                        />
+                        <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'advanced' ? 'text-[#F7C213]' : ''}`} >Advanced</h1>
+                        <div onClick={() => handleClick('advanced')}
+                            className={`flex justify-center items-center border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'advanced' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''}`}
+                        >
+                            <Lottie
+                                className='h-[200px] md:h-[300px]'
+                                animationData={advanced}
+                                loop
+                                autoplay
+                            />
+                        </div>
                     </div>
-                    </div>                   
                 </div>
 
                 <div className=' mt-[70px] flex justify-between px-16 '>

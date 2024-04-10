@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "imageSrc": "carsvg.svg",
+        "altText": "/",
+        "description": "Déterminer l'identité de votre voiture"
+    },
+    {
+        "id": 2,
+        "imageSrc": "precsie.svg",
+        "altText": "/",
+        "description": "Préciser les caractéristiques de votre voiture"
+    },
+    {
+        "id": 3,
+        "imageSrc": "fill.svg",
+        "altText": "/",
+        "description": "Remplissez un questionnaire afin d'évaluer l'état de votre voiture."
+    },
+    {
+        "id": 4,
+        "imageSrc": "happy.svg",
+        "altText": "/",
+        "description": "Recevoir une estimation du prix de votre voiture avec la possibilité de l’évaluer."
+    }
+]
