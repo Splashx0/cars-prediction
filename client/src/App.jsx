@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import SignUP from './pages/SignUP'
-import SignIn from './pages/SignIn'
-import AboutUs from './pages/AboutUs';
+import Register from './pages/Register'
+import Login from './pages/Login'
+import About from './pages/About';
 import Contact from './pages/Contact';
 import Quizz from './pages/Quizz';
 import QuizzType from './pages/QuizzType';
 import Quizzquest from './pages/Quizzquest';
 import Price from './pages/Price';
 import { MyContext } from './Context';
+import Profile from './pages/Profile';
 
 function App() {
+
   const [dropdownAnswers, setDrpodownAnswers] = useState({})
   const [optionAnswers, setOptionAnswers] = useState({})
   const [dateAnswers, setDateAnswers] = useState({});
@@ -28,14 +30,15 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' exact Component={Home} />
-            <Route path='/signup' exact Component={SignUP} />
-            <Route path='/signin' exact Component={SignIn} />
-            <Route path='/about' exact Component={AboutUs} />
+            <Route path='/register' exact Component={Register} />
+            <Route path='/login' exact Component={Login} />
+            <Route path='/about' exact Component={About} />
             <Route path='/contact' exact Component={Contact} />
             <Route path='/quizz' exact Component={Quizz} />
             <Route path='/quizztype' exact Component={QuizzType} />
             <Route path='/quizzquest' exact Component={Quizzquest} />
             <Route path='/price' exact Component={Price} />
+            <Route path='/profile' exact Component={Profile} />
           </Routes>
         </Router>
       </div>

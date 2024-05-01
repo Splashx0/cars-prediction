@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String? @unique
+  password String? @default("")
+}
+
+model Estimation {
+  id          Int    @id @default(autoincrement())
+  marque      String
+  modele      String
+  puissance   Int
+  kilometrage Int
+  annee       Int
+  energie     String
+  boite       String
+  prix        Float
+}
+
+model Marque {
+  id      Int      @id @default(autoincrement())
+  marque  String
+  modeles Modele[]
+}
+
+model Modele {
+  id       Int     @id @default(autoincrement())
+  modele   String
+  Marque   Marque? @relation(fields: [marqueId], references: [id])
+  marqueId Int?
+}
+
+model Energie {
+  id      Int    @id @default(autoincrement())
+  energie String
+}
+
+model Boite {
+  id    Int    @id @default(autoincrement())
+  boite String
+}
+
+model Question {
+  id       Int         @id @default(autoincrement())
+  question String
+  response Response[]
+  type     QuizzType[]
+  t        String
+}
+
+model Response {
+  id         Int       @id @default(autoincrement())
+  response   String
+  questionId Int?
+  Question   Question? @relation(fields: [questionId], references: [id])
+}
+
+enum QuizzType {
+  BASIC
+  ADVANCED
+}

@@ -1,4 +1,3 @@
-import React from 'react'
 //import SignInVideo from '../assets/videos/signinvideo.mp4'
 import googleicon from '../assets/google.svg'
 import facebookicon from '../assets/facebook.svg'
@@ -7,7 +6,7 @@ import { RiHome4Line } from "react-icons/ri";
 import { RiHome4Fill } from "react-icons/ri";
 import { Link } from 'react-router-dom'
 
-function SignIn() {
+function Login() {
   return (
     <div>
       <div className='bg-[#F5F5F5]'>
@@ -54,7 +53,7 @@ function SignIn() {
                 <label className=' ml-1 font-medium' htmlFor="password">Password</label>
                 <input className=' w-[350px] border-2 rounded-lg border-[#2E2E2E]  p-2 bg-white' type="password" name="password" placeholder='Enter password' />
                 <button className=' text-[17px]  flex justify-center border-2 border-[#F7C213] bg-[#F7C213] w-[350px] rounded-md font-medium mt-9  py-[8px] text-[#2E2E2E] hover:bg-[#F5F5F5] hover:border-2 hover:border-[#2E2E2E]'>Sign Up  </button>
-                <p className=' ml-1 text-sm py-1'>Dont have an account? <Link to="/signup" className=' underline'>Sign up</Link> </p>
+                <p className=' ml-1 text-sm py-1'>Dont have an account? <Link to="/register" className=' underline'>Register</Link> </p>
               </div>
             </form>
           </div>
@@ -65,4 +64,4 @@ function SignIn() {
   )
 }
 
-export default SignIn
+export default Login
