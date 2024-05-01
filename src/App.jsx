@@ -10,6 +10,7 @@ import QuizzType from './pages/QuizzType';
 import Quizzquest from './pages/Quizzquest';
 import Price from './pages/Price';
 import { MyContext } from './Context';
+import Profile from './pages/Profile';
 
 function App() {
   const [dropdownAnswers, setDrpodownAnswers] = useState({})
@@ -36,6 +37,7 @@ function App() {
             <Route path='/quizztype' exact Component={QuizzType} />
             <Route path='/quizzquest' exact Component={Quizzquest} />
             <Route path='/price' exact Component={Price} />
+            <Route path='/profile' exact Component={Profile}/>
           </Routes>
         </Router>
       </div>

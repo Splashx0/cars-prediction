@@ -1,5 +1,5 @@
 import React from 'react'
-//import SignInVideo from '../assets/videos/signinvideo.mp4'
+import SignInVideo from '../assets/videos/signinvideo.mp4'
 import googleicon from '../assets/google.svg'
 import facebookicon from '../assets/facebook.svg'
 import githubicon from '../assets/github.svg'
@@ -14,7 +14,7 @@ function SignIn() {
         {/*video */}
         <div className='flex '>
           <div className='max-w-[730px]'>
-            <video className='  hidden md:flex h-screen  object-cover' src={""} autoPlay loop muted />
+            <video className='  hidden md:flex h-screen  object-cover' src={SignInVideo} autoPlay loop muted />
 
           </div>
           {/*form container */}

@@ -18,7 +18,7 @@ function QuizzType() {
     return (
         <div>
             <Navbar />
-            <div className=' mt-[70px] mb-[200px] h-[1120px]  md:h-[650px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg' >
+            <div className=' mt-[70px] mb-[200px] h-[820px]  md:h-[650px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg' >
                 <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>De quel type de questionnaire avez-vous besoin ?</h1>
                 <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Pour commencer, choisissez l'un des quiz suivants</p>
                 {/*separator */}
@@ -26,25 +26,13 @@ function QuizzType() {
                     <div className="w-full h-px bg-[#bebebe]"></div>
                 </div>
                 {/*type */}
-                <div className=' w-[70%]  mx-auto  mt-[40px] mb-[70px]    grid md:grid-cols-3 gap-8' >
-                    <div>
-                        <h1 className={`mb-3 text-xl text-center font-semibold text-[#2E2E2E] ${activeAnimation === 'basic' ? 'text-[#F7C213]' : ''}`}>Basic</h1>
-
-                        <div
-                            onClick={() => handleClick('basic')} className={`flex justify-center items-center   border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'basic' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''}`}
-                        >
-                            <Lottie className='h-[200px]  md:h-[300px]'
-                                animationData={basic}
-                                loop
-                                autoplay
-                            />
-                        </div>
-                    </div>
+                <div className=' w-[55%]  mx-auto  mt-[40px] mb-[70px]    grid md:grid-cols-2 gap-8' >
+                    
                     <div>
                         <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'medium' ? 'text-[#F7C213]' : ''}`}
-                        >Medium</h1>
+                        >Basic</h1>
                         <div onClick={() => handleClick('medium')}
-                            className={`flex justify-center items-center  border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'medium' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''} `}
+                            className={`flex justify-center items-center  border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'medium' ? 'bg-[#ffd54d33] border-[#F7C213] border-[2px]' : ''} `}
                         >
                             <Lottie
                                 className='h-[200px] md:h-[300px] '
@@ -57,7 +45,7 @@ function QuizzType() {
                     <div>
                         <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'advanced' ? 'text-[#F7C213]' : ''}`} >Advanced</h1>
                         <div onClick={() => handleClick('advanced')}
-                            className={`flex justify-center items-center border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'advanced' ? 'bg-[#ffd54d33] border-[#F7C213]' : ''}`}
+                            className={`flex justify-center items-center border-[1px] border-[#2E2E2E] rounded-[25px] cursor-pointer ${activeAnimation === 'advanced' ? 'bg-[#ffd54d33] border-[#F7C213] border-[2px]' : ''}`}
                         >
                             <Lottie
                                 className='h-[200px] md:h-[300px]'

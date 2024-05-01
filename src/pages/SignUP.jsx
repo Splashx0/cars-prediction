@@ -1,5 +1,5 @@
 import React from 'react'
-//import SignUpVideo from '../assets/videos/signupvideo.mp4'
+import SignUpVideo from '../assets/videos/signupvideo.mp4'
 import googleicon from '../assets/google.svg'
 import facebookicon from '../assets/facebook.svg'
 import githubicon from '../assets/github.svg'
@@ -12,7 +12,7 @@ function SignUp() {
     <div className='bg-[#F5F5F5]'>
       <div className='flex '>
         <div className='max-w-[730px]'>
-          <video className=' hidden md:flex h-screen  object-cover' src={""} autoPlay loop muted />
+          <video className=' hidden md:flex h-screen  object-cover' src={SignUpVideo} autoPlay loop muted />
         </div>
 
         <div className=' ml-[40px] w-full h-screen  flex-col  items-center p-4 '>
