@@ -1,5 +1,7 @@
 import { FiPlusCircle } from "react-icons/fi";
 import { Link } from 'react-router-dom'
+import Modal from "./Modal";
+import { useState } from "react";
 
 
 function UserEstimation() {
@@ -23,6 +25,12 @@ function UserEstimation() {
     },
 
     ]
+    const [modalVisible,setModalVisible] =useState(false);
+    
+    const handleModal=()=>{
+        setModalVisible(!modalVisible);
+    }
+    
     return (
         <div className='  flex mt-[50px] '>
             {/**my estimations */}
@@ -35,19 +43,22 @@ function UserEstimation() {
                             <p className='text-center text-[#2E2E2E] mb-2 font-semibold text-[19px]  sm:mb-3'> {estim.quizz} </p>
                             <p className=' text-center text-[#2E2E2E] font-semibold text-[19px] font-Nunito'>{estim.date}</p>
                             <div className=' flex justify-center mt-[20px]  sm:mt-[28px]'>
-                                <button className='  text-[#f5edd7fd] bg-[#2E2E2E] hover:bg-transparent hover:border-[#2E2E2E] hover:text-[#2E2E2E] font-semibold border-2 border-[#2E2E2E] w-[160px] py-2 rounded-[12px] '>Détails</button>
+                                <button
+                                 onClick={()=>handleModal()}
+                                 className='  text-[#f5edd7fd] bg-[#2E2E2E] hover:bg-transparent hover:border-[#2E2E2E] hover:text-[#2E2E2E] font-semibold border-2 border-[#2E2E2E] w-[160px] py-2 rounded-[12px] '>Détails</button>
                             </div>
                         </div>
                     </div>
                 ))}
                 <Link to='/quizztype'>
-                    <div className='h-[260px] sm:h-[320px] md:h-[350px] bg-[#ffd54d17]  rounded-[25px] border-[3px] border-[#F7C213] flex cursor-pointer'>
+                    <div className='h-[260px] sm:h-[320px] md:h-[350px] bg-[#ffd54d17] group  rounded-[25px] border-[3px] border-[#F7C213] flex cursor-pointer'>
                         <div className='mx-auto my-auto '>
                             <p className=' text-center pb-5  text-[#F7C213] text-[24px] font-Nunito font-bold'>Nouvelle estimation</p>
-                            <FiPlusCircle className=' mx-auto text-[#F7C213]' size={32} />
+                            <FiPlusCircle className=' mx-auto text-[#F7C213] group-hover:rotate-90 duration-300' size={32} />
                         </div>
                     </div>
                 </Link>
+                {modalVisible && <Modal/>}
 
             </div>
 

@@ -107,7 +107,7 @@ function Quizzquest() {
         <div>
             <Navbar />
             {/*hearder */}
-            <div className=' mt-[70px] mb-[200px]  sm:h-[650px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg  ' >
+            <div className=' mt-[70px] mb-[200px]  bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg  ' >
                 <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>État du véhicule</h1>
                 <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Indiquez l'état du véhicule</p>
                 {/*separator */}

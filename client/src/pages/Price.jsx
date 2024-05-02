@@ -97,8 +97,8 @@ function Price() {
                 <tbody>
                   {currentRows.map((item, index) => (
                     <tr key={index} className=' border-b border-t border-gray-300 hover:bg-[#ffd54d33] cursor-pointer hover:border-white hover:rounded-xl ' >
-                      <td className=" px-4 py-4 ">{item.question}</td>
-                      <td className=" px-4 py-4 ">{item.answer}</td>
+                      <td className=" font-Nunito px-4 py-4 ">{item.question}</td>
+                      <td className=" font-Nunito px-4 py-4 ">{item.answer}</td>
                     </tr>
                   ))}
                 </tbody>

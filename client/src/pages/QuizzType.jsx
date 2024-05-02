@@ -17,7 +17,7 @@ function QuizzType() {
     return (
         <div>
             <Navbar />
-            <div className=' mt-[70px] mb-[200px] h-[820px]  md:h-[650px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg' >
+            <div className=' mt-[70px] mb-[200px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg' >
                 <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>De quel type de questionnaire avez-vous besoin ?</h1>
                 <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Pour commencer, choisissez l'un des quiz suivants</p>
                 {/*separator */}
@@ -26,11 +26,6 @@ function QuizzType() {
                 </div>
                 {/*type */}
                 <div className=' w-[55%]  mx-auto  mt-[40px] mb-[70px]    grid md:grid-cols-2 gap-8' >
-<<<<<<< HEAD:src/pages/QuizzType.jsx
-                    
-=======
-
->>>>>>> 8e9c108ac78b342796a423ef8cb45f3a3cd4e720:client/src/pages/QuizzType.jsx
                     <div>
                         <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'medium' ? 'text-[#F7C213]' : ''}`}
                         >Basic</h1>
@@ -60,7 +55,7 @@ function QuizzType() {
                     </div>
                 </div>
 
-                <div className=' mt-[70px] flex justify-between px-16 '>
+                <div className=' mt-[70px] flex justify-between px-16  pb-[30px]'>
                     <Link to='/' ><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' ><span className='  group-hover:-translate-x-1.5 duration-200'><FaArrowLeftLong className='mt-1 mr-[6px]' /></span> Precedent</button></Link>
                     <Link to='/quizz'><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' > Suivant<span className='  group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span></button></Link>
                 </div>

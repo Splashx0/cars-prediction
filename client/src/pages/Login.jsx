@@ -1,9 +1,4 @@
-<<<<<<< HEAD:src/pages/SignIn.jsx
-import React from 'react'
-import SignInVideo from '../assets/videos/signinvideo.mp4'
-=======
 //import SignInVideo from '../assets/videos/signinvideo.mp4'
->>>>>>> 8e9c108ac78b342796a423ef8cb45f3a3cd4e720:client/src/pages/Login.jsx
 import googleicon from '../assets/google.svg'
 import facebookicon from '../assets/facebook.svg'
 import githubicon from '../assets/github.svg'
@@ -18,7 +13,7 @@ function Login() {
         {/*video */}
         <div className='flex '>
           <div className='max-w-[730px]'>
-            <video className='  hidden md:flex h-screen  object-cover' src={SignInVideo} autoPlay loop muted />
+            <video className='  hidden md:flex h-screen  object-cover' src={""} autoPlay loop muted />
 
           </div>
           {/*form container */}

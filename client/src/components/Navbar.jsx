@@ -29,7 +29,7 @@ function Navbar() {
                     <Link to='/about'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >About Us</li></Link>
                     <Link to='/contact'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >Contacts</li></Link>
                     <Link to="/register">
-                        <button className='  items-center md:flex hidden group bg-[#F5F5F5] w-[121px] border-2 border-[#F7C213] rounded-md font-medium my-1 mx-auto px-6 py-3 text-[#F7C213] hover:bg-[#F7C213] hover:text-[#2E2E2E] hover:border-[#2E2E2E] duration-200' >
+                        <button className='  items-center md:flex hidden group bg-[#F5F5F5] w-[124px] border-2 border-[#F7C213] rounded-md font-medium my-1 mx-auto px-6 py-3 text-[#F7C213] hover:bg-[#F7C213] hover:text-[#2E2E2E] hover:border-[#2E2E2E] duration-200' >
                             Register
                             <span className='group-hover:translate-x-1.5 duration-200'>
                                 <CiLogin size={24} className=' ml-1' />

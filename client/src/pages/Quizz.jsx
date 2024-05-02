@@ -13,7 +13,7 @@ function Quizz() {
   return (
     <div>
       <Navbar />
-      <div className=' mt-[70px] mb-[200px] h-[680px] sm:h-[650px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg' >
+      <div className=' mt-[70px] mb-[200px] pb-[30px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg' >
         <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>Identification</h1>
         <p className=' text-center  text-lg text-[#5e5e5e] mt-3  '>Identifiez précisément le véhicule que vous souhaitez estimer</p>
         {/*separator */}
