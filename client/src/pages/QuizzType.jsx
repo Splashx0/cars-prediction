@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import basic from '../assets/animated icons/basic.json';
 import medium from '../assets/animated icons/medium.json';
 import advanced from '../assets/animated icons/advanced.json';
 import Lottie from 'lottie-react';
@@ -27,7 +26,11 @@ function QuizzType() {
                 </div>
                 {/*type */}
                 <div className=' w-[55%]  mx-auto  mt-[40px] mb-[70px]    grid md:grid-cols-2 gap-8' >
+<<<<<<< HEAD:src/pages/QuizzType.jsx
                     
+=======
+
+>>>>>>> 8e9c108ac78b342796a423ef8cb45f3a3cd4e720:client/src/pages/QuizzType.jsx
                     <div>
                         <h1 className={`mb-3 text-center text-xl font-semibold text-[#2E2E2E] ${activeAnimation === 'medium' ? 'text-[#F7C213]' : ''}`}
                         >Basic</h1>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { MyContext } from '../Context';
 
