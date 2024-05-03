@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
   theme: {
     extend: {},
@@ -9,6 +10,6 @@ module.exports = {
       Nunito: ['Nunito']
     }
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')({charts: true,})],
 }
 

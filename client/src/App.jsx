@@ -12,6 +12,7 @@ import Price from './pages/Price';
 import { MyContext } from './Context';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
+import UserQuizzes from './pages/UserQuizzes';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
             <Route path='/quizzquest' exact Component={Quizzquest} />
             <Route path='/price' exact Component={Price} />
             <Route path='/profile' exact Component={Profile} />
+            <Route path='/userquizzes' exact Component={UserQuizzes}/>
           </Routes>
         </Router>
       </div>

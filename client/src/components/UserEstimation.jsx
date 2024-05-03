@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 
-function UserEstimation() {
+function UserEstimation(estim) {
     const Estimations = [{
         name: "Audi R8 Nouveau",
         price: "100 000 TND",

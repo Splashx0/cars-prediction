@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-
-function User_info() {
+function AdminInfo() {
+    
     const [user, setUser] = useState({
         nom: "",
         email: "",
@@ -10,15 +10,15 @@ function User_info() {
         ville: "",
         adresse: ""
     });
-    
+
     useEffect(() => {
         const savedUser = localStorage.getItem('user');
         if (savedUser) {
             setUser(JSON.parse(savedUser));
         } else {
             setUser({
-                nom: "selim Boudaga",
-                email: "Selim@gmail.com",
+                nom: "Admin",
+                email: "Admin@gmail.com",
                 numero: "93390222",
                 governorat: "Sousse",
                 ville: "Sahloul",
@@ -84,4 +84,4 @@ function User_info() {
     )
 }
 
-export default User_info
+export default AdminInfo

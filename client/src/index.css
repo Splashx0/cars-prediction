@@ -26,5 +26,10 @@ body{
     background-color: #ffffff;
     border-radius: 5pxrgb(255, 255, 255)t the color of the track 
   }
+
+  .shadow-inner-custom {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06), inset 0 -2px 4px 0 rgba(0, 0, 0, 0.06),
+     inset 0 3px 6px 0 rgba(0, 0, 0, 0.08), inset 0 -3px 6px 0 rgba(0, 0, 0, 0.08);
+  }
   
   
