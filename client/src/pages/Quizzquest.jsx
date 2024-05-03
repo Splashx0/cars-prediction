@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -9,6 +9,8 @@ import DateInput from '../components/DateInput';
 import Dropdown from '../components/Dropdown';
 import { questions } from '../assets/Questions';
 import { MyContext } from '../Context';
+import Load from '../components/Load';
+
 
 function Quizzquest() {
     const [activeOptions, setActiveOptions] = useState([]);
@@ -16,7 +18,14 @@ function Quizzquest() {
     const itemsPerPage = 4;
     const navigate = useNavigate();
     const { optionAnswers, setOptionAnswers } = useContext(MyContext);
-
+    const[isLoading,setIsLoading] = useState(false);
+    useEffect(()=>{
+        setIsLoading(false);
+    },[])
+    const handleLoading=()=>{
+        setIsLoading(!isLoading);
+        console.log(isLoading)
+    }
 
     const handleOptionClick = (index, questionIndex, question, option) => {
         let newActiveOptions = [...activeOptions];
@@ -131,8 +140,12 @@ function Quizzquest() {
                         Suivant<span className='group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span>
                     </button>
                 </div>
+                
+                <button onClick={handleLoading} className=' py-3 w-[200px] bg-[#c4eb59] rounded-xl hover:bg-white hover:border-[#c4eb59] hover:border-2'>Blur</button>
             </div>
+            {isLoading && <Load/>}
             <Footer />
+            
         </div>
     )
 }

@@ -11,6 +11,7 @@ import Quizzquest from './pages/Quizzquest';
 import Price from './pages/Price';
 import { MyContext } from './Context';
 import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' exact Component={Home} />
+            <Route path='admin' exact Component={Admin} />
             <Route path='/register' exact Component={Register} />
             <Route path='/login' exact Component={Login} />
             <Route path='/about' exact Component={About} />
