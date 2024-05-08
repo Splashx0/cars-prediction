@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { ReactTyped } from "react-typed";
 import { GoGear } from "react-icons/go";
 import { Link } from 'react-router-dom'
-
+import { MyContext } from '../Context';
+import axios from 'axios';
 
 function Hero() {
+
+  const { user, setCurrentQuizz, setDrpodownAnswers,
+    setOptionAnswers, setDateAnswers, setInputAnswers } = useContext(MyContext);
+
+  const createQuizz = async (id) => {
+    try {
+      //setCurrentQuizz(null);
+      setDateAnswers({});
+      setOptionAnswers({});
+      setInputAnswers({});
+      setDrpodownAnswers({});
+      const response = await axios.post('http://localhost:3001/api/quizz/create',
+        { id });
+      const result = await response.data;
+      setCurrentQuizz(result.id)
+      console.log(result.id);
+
+    } catch (error) {
+      console.log(error.response.data.message)
+    }
+  }
   return (
     <div className=' text-[#2E2E2E] h-[80vh] md:mb-[30px] mb-[-10rem]'>
       <div className=' max-w[800px] mt-[-96px] w-full h-[700px] mx-auto text-center flex flex-col justify-center '>
@@ -23,8 +45,10 @@ function Hero() {
         <p className=' md:text-2xl text-xl font-bold text-gray-500  '>
           Veuillez remplir le questionnaire pour recevoir un devis pour votre bien.
         </p>
-        <Link to='/quizz'>
-          <button className=' text-[17px]
+        <Link to='/quizztype'>
+          <button
+            onClick={() => createQuizz(user.id)}
+            className=' text-[17px]
            group px-10 flex justify-between border-2
             border-[#F7C213] bg-[#F7C213] 
             w-[200px] rounded-md font-medium mt-6 mx-auto py-3 text-[#2E2E2E] hover:bg-[#F5F5F5] hover:border-2 hover:border-[#2E2E2E]'>

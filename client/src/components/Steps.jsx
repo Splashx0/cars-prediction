@@ -6,17 +6,17 @@ import { motion } from "framer-motion"
 
 function Steps() {
     return (
-        <div className=' w-full py-[6rem] px-4 bg-[#F5F5F5] mb-[100px]'>
+        <div className=' w-full py-[6rem]  bg-[#F5F5F5] mb-[100px]'>
             <motion.div
                 variants={{
-                    start: { opacity: 0, x: 0 },
-                    end: { opacity: 1, x: 75 }
+                    start: { opacity: 0, x: -75 },
+                    end: { opacity: 1, x: 0 }
                 }}
                 initial="start"
                 whileInView="end"
                 transition={{ duration: 0.7, delay: 0.2 }}
 
-                className=' max-w-[1240px] mx-auto grid md:grid-cols-4 gap-8' >
+                className=' max-w-[1240px] mx-auto  grid md:grid-cols-4 gap-8' >
                 <div className=' shadow-md  w-full  flex flex-col p-4 my-4  hover:scale-105 duration-300 cursor-pointer'>
                     <img className=' w-20  mx-auto  bg-[#F5F5F5]' src={Car} alt="/" style={{ height: '240px', width: '230px' }} />
                     <div className=' text-center font-medium '>

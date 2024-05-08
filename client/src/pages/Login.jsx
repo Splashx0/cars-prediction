@@ -1,19 +1,46 @@
-//import SignInVideo from '../assets/videos/signinvideo.mp4'
 import googleicon from '../assets/google.svg'
 import facebookicon from '../assets/facebook.svg'
 import githubicon from '../assets/github.svg'
 import { RiHome4Line } from "react-icons/ri";
 import { RiHome4Fill } from "react-icons/ri";
 import { Link } from 'react-router-dom'
+import axios from 'axios';
+import { useContext, useState } from 'react';
+import { MyContext } from '../Context';
+import loginvid from '../assets/videos/vid2.mp4'
+
 
 function Login() {
+
+  const { LoginUser } = useContext(MyContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginQuery = async (email, password) => {
+    try {
+      const response = await axios.post('http://localhost:3001/api/auth/login',
+        { email, password });
+      const result = await response.data;
+      LoginUser(result.user, result.token)
+
+    } catch (error) {
+      console.log(error.response.data.message)
+    }
+
+  }
+
+  const handleLogin = (e) => {
+    loginQuery(email, password);
+    e.preventDefault();
+  }
+
   return (
     <div>
       <div className='bg-[#F5F5F5]'>
         {/*video */}
         <div className='flex '>
           <div className='max-w-[730px]'>
-            <video className='  hidden md:flex h-screen  object-cover' src={""} autoPlay loop muted />
+            <video className='  hidden md:flex h-screen  object-cover' src={loginvid} autoPlay loop muted />
 
           </div>
           {/*form container */}
@@ -47,12 +74,12 @@ function Login() {
               {/*text fields and labels */}
               <div className=' mb-3 flex flex-col'>
                 <label className=' ml-1 font-medium' htmlFor='name'>Email</label>
-                <input className=' w-[350px] border-2 rounded-lg border-[#2E2E2E]  p-2 bg-white' type="email" name="email" placeholder='Enter Email...' />
+                <input onChange={(e) => setEmail(e.target.value)} className=' w-[350px] border-2 rounded-lg border-[#2E2E2E]  p-2 bg-white' type="email" name="email" placeholder='Enter Email...' />
               </div>
               <div className=' mb-3 flex flex-col'>
                 <label className=' ml-1 font-medium' htmlFor="password">Password</label>
-                <input className=' w-[350px] border-2 rounded-lg border-[#2E2E2E]  p-2 bg-white' type="password" name="password" placeholder='Enter password' />
-                <button className=' text-[17px]  flex justify-center border-2 border-[#F7C213] bg-[#F7C213] w-[350px] rounded-md font-medium mt-9  py-[8px] text-[#2E2E2E] hover:bg-[#F5F5F5] hover:border-2 hover:border-[#2E2E2E]'>Sign Up  </button>
+                <input onChange={(e) => setPassword(e.target.value)} className=' w-[350px] border-2 rounded-lg border-[#2E2E2E]  p-2 bg-white' type="password" name="password" placeholder='Enter password' />
+                <button onClick={(e) => handleLogin(e)} className=' text-[17px]  flex justify-center border-2 border-[#F7C213] bg-[#F7C213] w-[350px] rounded-md font-medium mt-9  py-[8px] text-[#2E2E2E] hover:bg-[#F5F5F5] hover:border-2 hover:border-[#2E2E2E]'>Sign Up  </button>
                 <p className=' ml-1 text-sm py-1'>Dont have an account? <Link to="/register" className=' underline'>Register</Link> </p>
               </div>
             </form>

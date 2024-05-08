@@ -1,22 +1,21 @@
 import { useState, useContext } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Quizzelement from '../components/Quizzelement';
 import QuizzInput from '../components/QuizzInput';
 import DateInput from '../components/DateInput';
 import Dropdown from '../components/Dropdown';
-import { questions } from '../assets/Questions';
 import { MyContext } from '../Context';
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios';
 
 function Quizzquest() {
+
     const [activeOptions, setActiveOptions] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 4;
+    const itemsPerPage = 3;
     const navigate = useNavigate();
-    const { optionAnswers, setOptionAnswers } = useContext(MyContext);
-
+    const { optionAnswers, setOptionAnswers, questions } = useContext(MyContext);
 
     const handleOptionClick = (index, questionIndex, question, option) => {
         let newActiveOptions = [...activeOptions];
@@ -49,25 +48,46 @@ function Quizzquest() {
                 return prevPage - 1;
             } else {
                 // If on the first page, navigate to "/quizzquest2"
-                navigate('/quizz');
+                navigate('/quizztype'); //quizz
                 return prevPage;
             }
         });
     };
 
+    const [selectedMarque, setSelectedMarque] = useState(null);
+
+    const { data: marques } = useQuery({
+        queryKey: ['marques'],
+        queryFn: async () => {
+            const response = await axios.get('http://localhost:3001/api/cars/marques');
+            return await response.data;
+        }
+    });
+
+    const { data: modeles } = useQuery({
+        queryKey: ['modeles', selectedMarque],
+        queryFn: async () => {
+            if (selectedMarque) {
+                const response = await axios.get(`http://localhost:3001/api/cars/${selectedMarque}`);
+                return await response.data;
+            }
+        }
+    });
+
+
     const renderQuestion = (question, questionIndex) => {
-        switch (question.type) {
+        switch (question.t) {
             case "option":
                 return (
                     <div key={questionIndex} className="mb-4">
-                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
+                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.question}</h1>
                         <div className={`grid sm:grid-cols-2 md:grid-cols-${question.options.length} gap-8 mx-auto w-[60%] sm:w-[75%]`} >
                             {question.options.map((option, index) => (
                                 <div key={index}>
                                     <Quizzelement
                                         index={index}
                                         active={activeOptions[questionIndex] === index}
-                                        handleOptionClick={() => handleOptionClick(index, questionIndex, question.title, option)}
+                                        handleOptionClick={() => handleOptionClick(index, questionIndex, question.question, option)}
                                         text={option}
                                     />
                                 </div>
@@ -78,23 +98,28 @@ function Quizzquest() {
             case "date":
                 return (
                     <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
-                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <DateInput question={question.title} />
+                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.question}</h1>
+                        <DateInput question={question.question} />
                     </div>
                 );
             case "input":
                 return (
                     <div key={questionIndex} className='mb-3 w-[60%] mx-auto'>
-                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <QuizzInput question={question.title} />
+                        <h1 className='text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.question}</h1>
+                        <QuizzInput question={question.question} />
                     </div>
                 );
             case "dropdown":
                 return (
                     <div key={questionIndex}>
-                        <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.title}</h1>
-                        <div className=' flex justify-center  w-[60%]  mx-auto'>
-                            <Dropdown placehold={question.title} options={question.options} question={question.title} />
+                        <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3 mb-3'>{question.question}</h1>
+                        <div className=' flex justify-center  w-[60%]  mx-auto mb-3'>
+                            <Dropdown
+                                data={question.question === "Marque" ? marques : modeles}
+                                setSelectedMarque={setSelectedMarque}
+                                placehold={question.question}
+                                options={question.options}
+                                question={question.question} />
                         </div>
                     </div>
                 );
@@ -105,7 +130,6 @@ function Quizzquest() {
 
     return (
         <div>
-            <Navbar />
             {/*hearder */}
             <div className=' mt-[70px] mb-[200px]  sm:h-[650px] bg-white max-w-[1240px] mx-auto rounded-[28px]  shadow-lg  ' >
                 <h1 className=' text-center text-3xl text-[#F7C213] font-bold pt-6'>État du véhicule</h1>
@@ -116,7 +140,7 @@ function Quizzquest() {
                 </div>
                 {/*content */}
                 <div className='sm:overflow-y-auto sm:max-h-[425px] scrollbar'>
-                    {questions.slice(currentPage * itemsPerPage, currentPage * itemsPerPage + itemsPerPage).map((question, questionIndex) => (
+                    {questions?.slice(currentPage * itemsPerPage, currentPage * itemsPerPage + itemsPerPage).map((question, questionIndex) => (
                         renderQuestion(question, questionIndex)
                     ))}
                 </div>
@@ -125,14 +149,16 @@ function Quizzquest() {
                 </div>
                 <div className='pb-6 sm:mt-[30px] mt-[50px] flex justify-between px-16'>
                     <button onClick={handlePreviousPage} className='w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300 font-semibold ' >
-                        <span className='group-hover:-translate-x-1.5 duration-200'><FaArrowLeftLong className='mt-1 mr-[6px]' /></span> Precedent
+                        <span className='group-hover:-translate-x-1.5 duration-200'>
+                            <FaArrowLeftLong className='mt-1 mr-[6px]' />
+                        </span>
+                        Precedent
                     </button>
                     <button onClick={handleNextPage} className='w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300 font-semibold ' >
                         Suivant<span className='group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span>
                     </button>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
