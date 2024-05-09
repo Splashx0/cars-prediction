@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { MyContext } from '../Context';
-import loginvid from '../assets/videos/vid2.mp4'
+//import loginvid from '../assets/videos/vid2.mp4'
 
 
 function Login() {
@@ -40,7 +40,7 @@ function Login() {
         {/*video */}
         <div className='flex '>
           <div className='max-w-[730px]'>
-            <video className='  hidden md:flex h-screen  object-cover' src={loginvid} autoPlay loop muted />
+            <video className='  hidden md:flex h-screen  object-cover' src={""} autoPlay loop muted />
 
           </div>
           {/*form container */}

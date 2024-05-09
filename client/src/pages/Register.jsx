@@ -7,7 +7,7 @@ import { RiHome4Fill } from "react-icons/ri";
 import { Link } from 'react-router-dom'
 import { MyContext } from '../Context';
 import axios from 'axios';
-import registervid from '../assets/videos/vid1.mp4'
+//import registervid from '../assets/videos/vid1.mp4'
 
 function Register() {
 
@@ -38,7 +38,7 @@ function Register() {
     <div className='bg-[#F5F5F5]'>
       <div className='flex '>
         <div className='max-w-[730px]'>
-          <video className=' hidden md:flex h-screen  object-cover' src={registervid} autoPlay loop muted />
+          <video className=' hidden md:flex h-screen  object-cover' src={""} autoPlay loop muted />
         </div>
 
         <div className=' ml-[40px] w-full h-screen  flex-col  items-center p-4'>
