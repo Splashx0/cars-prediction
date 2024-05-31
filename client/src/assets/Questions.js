@@ -34,10 +34,6 @@ export const questions = [
         title: 'Nombre de Km parcouru',
     },
     {
-        type: "date",
-        title: "Année de fabrication",
-    },
-    {
         type: "option",
         title: 'Extérieur du véhicule',
         options: ['Excellent', 'Bon']

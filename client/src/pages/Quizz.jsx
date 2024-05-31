@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import Dropdown from '../components/Dropdown'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -33,19 +32,11 @@ function Quizz() {
             <Dropdown placehold="Modele" options={options} question={"Modele"} />
           </div>
         </div>
-        <div >
-          <h1 className=' text-center text-2xl font-medium text-[#2E2E2E] pt-6 pb-3'>Version</h1>
-          <div className=' flex justify-center  w-[60%]  mx-auto'>
-            <Dropdown placehold="Version" options={options} question={"Version"} />
-          </div>
-        </div>
         <div className=' mt-[70px] flex justify-between px-16 '>
           <Link to='/quizztype'><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' ><span className='  group-hover:-translate-x-1.5 duration-200'><FaArrowLeftLong className='mt-1 mr-[6px]' /></span> Precedent</button></Link>
           <Link to='/quizzquest'><button className=' w-[140px] flex group text-[17px] border-[#2E2E2E] border-[1px] py-2 px-4 rounded-lg text-[#2E2E2E] hover:bg-[#F7C213]  hover:border-[#F7C213] duration-300  font-semibold ' > Suivant<span className='  group-hover:translate-x-1.5 duration-200'><FaArrowRightLong className='mt-1 ml-[25px]' /></span></button></Link>
         </div>
       </div>
-      <Footer />
-
     </div>
   )
 }

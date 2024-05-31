@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { MyContext } from '../Context';
 
-const Dropdown = ({ placehold, options, question }) => {
+
+const Dropdown = ({ placehold, options, question, data, setSelectedMarque }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchText, setSearchText] = useState('');
-  const [, setSelectedOption] = useState('');
+  const [searchText, setSearchText] = useState("");
+  const [, setSelectedOption] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [dropdownTop, setDropdownTop] = useState(null);
   const inputRef = useRef(null);
@@ -30,6 +31,18 @@ const Dropdown = ({ placehold, options, question }) => {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    setSearchText(option);
+
+    let CopyDrpodownAnswers = { ...dropdownAnswers }
+    CopyDrpodownAnswers[question] = option
+    setDrpodownAnswers(CopyDrpodownAnswers)
+
+    setIsOpen(false);
+
+  };
+
+  const handleMarque = (option) => {
+    setSelectedMarque(option);
     setSearchText(option);
 
     let CopyDrpodownAnswers = { ...dropdownAnswers }
@@ -66,7 +79,7 @@ const Dropdown = ({ placehold, options, question }) => {
     }
   }, [isOpen]);
 
-  const filteredOptions = options ? options.filter(option =>
+  const filteredOptions = (options) ? options.filter(option =>
     option.toLowerCase().includes(searchText.toLowerCase())
   ) : [];
 
@@ -77,7 +90,9 @@ const Dropdown = ({ placehold, options, question }) => {
           type="text"
           placeholder={placehold}
           ref={inputRef}
-          className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} w-[300px] sm:w-[500px] lg:w-[600px] border-[1px] h-[57px] rounded-[20px] p-2 focus:outline-none`}
+          className={`border ${isFocused ? 'border-[#F7C213] ' : 'border-[#2E2E2E]'} 
+          w-[300px] sm:w-[500px] lg:w-[600px] 
+          border-[1px] h-[57px] rounded-[20px] p-2 focus:outline-none`}
           onClick={toggleDropdown}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
@@ -88,11 +103,45 @@ const Dropdown = ({ placehold, options, question }) => {
           <IoMdArrowDropdown className='cursor-pointer' color={isFocused ? '#F7C213' : '#2E2E2E'} />
         </div>
       </div>
-
-      {isOpen && (
+      {isOpen && question === "Marque" ? (
         <div
           ref={dropdownRef}
-          className="absolute top-auto left-0 right-0 bg-white shadow-lg rounded-lg z-20"
+          className="absolute top-auto left-0 right-0
+           bg-white shadow-lg 
+           rounded-lg z-20 overflow-y-auto max-h-40"
+          style={{ top: dropdownTop }}>
+          {data?.map((option, index) => (
+            <div
+              key={index}
+              className="cursor-pointer py-2 px-4 hover:bg-[#f5f5f5fd]"
+              onClick={() => handleMarque(option.marque)}
+            >
+              {option.marque}
+            </div>
+          ))}
+        </div>
+
+      ) : isOpen && question === "Modele" ? <div
+        ref={dropdownRef}
+        className="absolute top-auto left-0 right-0
+       bg-white shadow-lg 
+       rounded-lg z-20 overflow-y-auto max-h-40"
+        style={{ top: dropdownTop }}>
+        {data?.map((option, index) => (
+          <div
+            key={index}
+            className="cursor-pointer py-2 px-4 hover:bg-[#f5f5f5fd]"
+            onClick={() => handleOptionClick(option?.modele)}
+          >
+            {option?.modele}
+          </div>
+        ))}
+      </div> :
+        <div
+          ref={dropdownRef}
+          className="absolute top-auto left-0 right-0
+           bg-white shadow-lg 
+           rounded-lg z-20 overflow-y-auto max-h-40"
           style={{ top: dropdownTop }}
         >
           {filteredOptions.map((option, index) => (
@@ -105,7 +154,7 @@ const Dropdown = ({ placehold, options, question }) => {
             </div>
           ))}
         </div>
-      )}
+      }
     </div>
   );
 };

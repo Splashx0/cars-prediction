@@ -8,22 +8,53 @@ datasource db {
 }
 
 model Client {
-  id       Int     @id @default(autoincrement())
-  name     String
-  email    String? @unique
-  password String? @default("")
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String?    @unique
+  password  String?    @default("")
+  quizzes   Quizz[]
+  responses Response[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
 }
 
-model Estimation {
-  id          Int    @id @default(autoincrement())
-  marque      String
-  modele      String
-  puissance   Int
-  kilometrage Int
-  annee       Int
-  energie     String
-  boite       String
-  prix        Float
+model Quizz {
+  id         Int        @id @default(autoincrement())
+  questions  Question[]
+  estimation Float?
+  Client     Client?    @relation(fields: [clientId], references: [id])
+  clientId   Int?
+  type       QuizzType?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @default(now()) @updatedAt
+}
+
+model Question {
+  id        Int         @id @default(autoincrement())
+  question  String
+  quizz     Quizz[]
+  type      QuizzType[]
+  options   String[]
+  t         String
+  reponses  Response[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now()) @updatedAt
+}
+
+model Response {
+  id         Int       @id @default(autoincrement())
+  response   String
+  Question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+  Client     Client?   @relation(fields: [clientId], references: [id])
+  clientId   Int?
+}
+
+enum QuizzType {
+  BASIC
+  ADVANCED
 }
 
 model Marque {
@@ -37,34 +68,4 @@ model Modele {
   modele   String
   Marque   Marque? @relation(fields: [marqueId], references: [id])
   marqueId Int?
-}
-
-model Energie {
-  id      Int    @id @default(autoincrement())
-  energie String
-}
-
-model Boite {
-  id    Int    @id @default(autoincrement())
-  boite String
-}
-
-model Question {
-  id       Int         @id @default(autoincrement())
-  question String
-  response Response[]
-  type     QuizzType[]
-  t        String
-}
-
-model Response {
-  id         Int       @id @default(autoincrement())
-  response   String
-  questionId Int?
-  Question   Question? @relation(fields: [questionId], references: [id])
-}
-
-enum QuizzType {
-  BASIC
-  ADVANCED
 }

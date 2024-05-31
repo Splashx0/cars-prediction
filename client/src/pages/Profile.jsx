@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import { useState, useContext } from 'react'
 import UserInfo from '../components/UserInfo'
 import UserEstimation from '../components/UserEstimation';
+import Navbar from '../components/Navbar';
 
 function Profile() {
     const [profileselect, setprofileselect] = useState(true);
@@ -27,7 +26,6 @@ function Profile() {
                 {/*con */}
                 {profileselect ? <UserInfo /> : <UserEstimation />}
             </div>
-            <Footer />
         </div>
     )
 }

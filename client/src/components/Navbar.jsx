@@ -1,17 +1,21 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { RiAccountBoxLine } from "react-icons/ri";
 import { CiLogin } from "react-icons/ci";
 import { GoInfo, GoHome } from "react-icons/go";
 import { RiUserLine } from "react-icons/ri";
-
 import logo from '../assets/projectlogo.png'
 import logo1 from '../assets/logo1.png'
+import { MyContext } from '../Context';
+
 
 function Navbar() {
     const [nav, setNav] = useState(false);
+    const { user, Logout } = useContext(MyContext);
 
+
+    console.log(user)
     const handlenav = () => {
         setNav(!nav)
     }
@@ -25,16 +29,30 @@ function Navbar() {
             <div className=' flex justify-between'>
                 <ul className=' md:flex  hidden '>
                     <Link to='/'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >Home</li></Link>
-                    <Link to='/profile'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >My profile</li></Link>
-                    <Link to='/about'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >About Us</li></Link>
-                    <Link to='/contact'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >Contacts</li></Link>
+                    {user ?
+                        <Link to='/profile'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >My profile</li></Link>
+                        : ''}
+                    <Link to='/about'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >
+                        About-us</li>
+                    </Link>
+                    <Link to='/contact'><li className=' p-4 cursor-pointer hover:text-[#F7C213]  text-xl' >
+                        Contact-us</li>
+                    </Link>
+
                     <Link to="/register">
-                        <button className='  items-center md:flex hidden group bg-[#F5F5F5] w-[121px] border-2 border-[#F7C213] rounded-md font-medium my-1 mx-auto px-6 py-3 text-[#F7C213] hover:bg-[#F7C213] hover:text-[#2E2E2E] hover:border-[#2E2E2E] duration-200' >
+                        {!user ? <button className='  items-center md:flex hidden group bg-[#F5F5F5] w-[121px] border-2 border-[#F7C213] rounded-md font-medium my-1 mx-auto px-6 py-3 text-[#F7C213] hover:bg-[#F7C213] hover:text-[#2E2E2E] hover:border-[#2E2E2E] duration-200' >
                             Register
                             <span className='group-hover:translate-x-1.5 duration-200'>
                                 <CiLogin size={24} className=' ml-1' />
                             </span>
                         </button>
+                            : <button onClick={() => Logout()} className='  items-center md:flex hidden group bg-[#F5F5F5] w-[121px] border-2 border-[#F7C213] rounded-md font-medium my-1 mx-auto px-6 py-3 text-[#F7C213] hover:bg-[#F7C213] hover:text-[#2E2E2E] hover:border-[#2E2E2E] duration-200' >
+                                Logout
+                                <span className='group-hover:translate-x-1.5 duration-200'>
+                                    <CiLogin size={24} className=' ml-1' />
+                                </span>
+                            </button>
+                        }
                     </Link>
 
                 </ul>
@@ -51,7 +69,17 @@ function Navbar() {
 
                 <ul className='  uppercase p-4 cursor-pointer' >
                     <Link to='/'><li className=' flex justify-between p-4 border-b border-gray-200 hover:bg-[#F5F5F5]  hover:rounded-lg hover:border-[#F7C213] hover:border-[1px] duration-200 text-xl' >Home <span><GoHome className=' my-auto' size={25} /></span> </li></Link>
-                    <Link to='/profile'><li className=' flex justify-between p-4 border-b border-gray-200 hover:bg-[#F5F5F5]  hover:rounded-lg hover:border-[#F7C213] hover:border-[1px] duration-200 text-xl' >Mon profil <span><RiAccountBoxLine className=' my-auto' size={25} /></span></li></Link>
+                    {user?.name == "admin" ?
+                        <Link to='/profile'><li className=' flex justify-between p-4 border-b border-gray-200 hover:bg-[#F5F5F5]  hover:rounded-lg hover:border-[#F7C213] hover:border-[1px] duration-200 text-xl' >
+                            Mon profil <span>
+                                <RiAccountBoxLine className=' my-auto' size={25} />
+                            </span></li>
+                        </Link> :
+                        <Link to='/admin'><li className=' flex justify-between p-4 border-b border-gray-200 hover:bg-[#F5F5F5]  hover:rounded-lg hover:border-[#F7C213] hover:border-[1px] duration-200 text-xl' >
+                            Dashboard <span>
+                                <RiAccountBoxLine className=' my-auto' size={25} />
+                            </span></li>
+                        </Link>}
                     <Link to='/about'><li className=' flex justify-between p-4 border-b border-gray-200 hover:bg-[#F5F5F5]  hover:rounded-lg hover:border-[#F7C213] hover:border-[1px] duration-200 text-xl' >About Us <span><GoInfo className=' my-auto' size={25} /></span></li></Link>
                     <Link to='/contact'><li className=' flex justify-between p-4 border-b border-gray-200 hover:bg-[#F5F5F5]  hover:rounded-lg hover:border-[#F7C213] hover:border-[1px] duration-200 text-xl' >Contact <span><RiUserLine className=' my-auto' size={25} /></span></li></Link>
                     <Link to="/register"  ><button className='flex justify-between group md:flex text-start bg-[white] w-full  rounded-md text-xl  mx-auto px-6 py-3 text-[#F7C213] hover:bg-[#F7C213] hover:text-[#2E2E2E] hover:border-[#2E2E2E] duration-200' >Register<span className='group-hover:translate-x-1.5 duration-200'><CiLogin size={29} className='' /></span></button></Link>
