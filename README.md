@@ -24,12 +24,12 @@ Carsale is an innovative web application that helps users determine the price of
 - **AI Model**: Utilizes a `RandomForestRegressor` model to predict car prices.
 - **Authentication**: Users can sign up and log in to save and view their quiz results.
 - **Data Source**: Car data is scraped from Tunisian car selling websites.
-- **Database Management**: Uses MySQL with Prisma ORM.
+- **Database Management**: Uses PostgreSQL with Prisma ORM.
 
 ## 💻 Technologies Used
 - **Frontend**: ReactJS, TailwindCSS
 - **Backend**: Node.js
-- **Database**: MySQL
+- **Database**: PostgreSQL
 - **ORM**: Prisma
 - **Authentication**: JSON Web Tokens (JWT)
 - **AI Model**: RandomForestRegressor
