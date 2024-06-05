@@ -80,8 +80,4 @@ Contributions are what make the open-source community such an amazing place to l
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-Feel free to reach out if you have any questions or need further assistance!
-
-**Gmail**: salim8boudaga@gmail.com 
-
 ## Thank you for your attention and dont forget to give us a "STAR" ⭐️
