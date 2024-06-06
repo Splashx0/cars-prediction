@@ -5,10 +5,12 @@ import CarsRouter from './src/routes/cars.routes.js'
 import QuestionsRouter from './src/routes/questions.routes.js'
 import authRouter from './src/routes/auth.routes.js'
 import quizzRouter from './src/routes/quizz.routes.js'
-
+import dotenv from "dotenv";
 import cors from 'cors';
 
 const app = express();
+
+dotenv.config();
 
 app.use(morgan('dev'))
 app.use(cors({
