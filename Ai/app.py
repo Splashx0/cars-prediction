@@ -10,22 +10,6 @@ CORS(app)
 #def man():
 #    return render_template('home.html')
 
-
-"""@app.route('/predict', methods=['POST'])
-def home():
-    car_dict={}
-    car_dict["marque"] = request.form['marque']
-    car_dict["modele"] = request.form['modele']
-    car_dict["puissance_fiscale"] = int(request.form['puissance_fiscale'])
-    car_dict["kilometrage"] = int(request.form['kilometrage'])
-    car_dict["annee"] = int(request.form['annee'])
-    car_dict["energie"] = request.form['energie']
-    car_dict["boite"] = request.form['boite']
-
-    pred = model.prediction(car_dict)
-
-    return render_template('home.html', data=pred)"""
-
 @app.route('/test', methods=['POST'])
 def home():
 
@@ -44,6 +28,27 @@ def home():
     pred = model.prediction(car_dict)
 
     return {"prediction":pred[0]}
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    try:
+        # Perform any necessary checks here (e.g., database connection check)
+        
+        # If everything is okay, return a success status
+        response = {
+            'status': 'healthy',
+            'message': 'The application is running smoothly.'
+        }
+        return jsonify(response), 200
+    except Exception as e:
+        # If there is an issue, return an error status
+        response = {
+            'status': 'unhealthy',
+            'message': str(e)
+        }
+        return jsonify(response), 500
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
