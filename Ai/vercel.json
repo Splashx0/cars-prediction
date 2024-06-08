@@ -1,15 +1,26 @@
 {
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    } 
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app.py",
-      "methods":["GET"]
-    }
-  ]
+    "version": 2,
+    "builds": [
+        {
+            "src": "app.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "app.py",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "OPTIONS",
+                "DELETE",
+                "HEAD",
+                "CONNECT",
+                "TRACE"
+            ]
+        }
+    ]
 }
