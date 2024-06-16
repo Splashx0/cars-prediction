@@ -1,11 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask
+from handlers.routes import configure_routes
 
 app = Flask(__name__)
-CORS(app)
 
-@app.route('/', methods=['GET'])
-def home():
-    return jsonify({'message': 'Hello, World!'})
+configure_routes(app)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
