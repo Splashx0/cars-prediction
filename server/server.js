@@ -20,39 +20,14 @@ app.use(cors({
 
 app.use(express.json());
 
-
-app.get('/qs', async(req, res) => {
-  try {
-    for (const question of questions) {
-      await prisma.question.create({
-        data: {
-          question: question.title,
-          options: question.options,
-          type:question.quizzType,
-          t:question.type
-        }
-      });
-      res.status(200).send('Succcessfully created')
-    }
-  } catch (error) {
-    res.status(500).send('ERROR: ' + error.message)
-}})
-
-
-app.get('/', (req, res) => {
-  res.send('hello')
-})
-
 app.get('/health', (req, res) => {
-  res.status(200).send('jawek behi')
+  res.status(200).send('working fine !')
 })
 
 app.use('/api/cars', CarsRouter)
 app.use('/api/questions', QuestionsRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/quizz', quizzRouter)
-
-
 
 app.listen(3001, () => {
     console.log("server running on port 3001")
